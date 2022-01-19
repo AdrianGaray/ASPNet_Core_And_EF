@@ -62,11 +62,17 @@ namespace WebNetCore3.Areas.Categorias.Controllers
             }
             else
             {
+                // Registro de Roles
                 //return RedirectToAction(nameof(HomeController.Index), "Home");
                 return Redirect("/Home/Index");
             }
         }
 
+        /// <summary>
+        /// Captura la información ingresada en el Modal, cuando guardamos la información.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public String GetCategorias(DataPaginador<TCategoria> model)
@@ -75,7 +81,6 @@ namespace WebNetCore3.Areas.Categorias.Controllers
             {
                 var data = _lcategoria.RegistrarCategoria(model.Input);
                 return JsonConvert.SerializeObject(data);
-                //return "Hola";
             }
             else
             {

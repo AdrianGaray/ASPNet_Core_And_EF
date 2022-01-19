@@ -27,11 +27,14 @@ namespace WebNetCore3.Controllers
             _logger = logger;
         }*/
 
-        // IServiceProvider _serviceProvider;
-        /*public HomeController(IServiceProvider serviceProvider)
+        /* Registro de Roles
+        IServiceProvider _serviceProvider;
+        public HomeController(IServiceProvider serviceProvider)
         {
              _serviceProvider = serviceProvider;
-        }*/
+        }
+
+        */
 
         // se hace inyeccion del Objeto ApplicationDbContext, sobre el constructor
         public HomeController(ApplicationDbContext context, UserManager<IdentityUser> userManager,
@@ -81,6 +84,14 @@ namespace WebNetCore3.Controllers
             //await CreateRolesAsync(_serviceProvider);
             return View(models);
         }
+
+        /* Registro de Roles
+        public async Task <IActionResult> Index()
+        {
+            await CreateRolesAsync(_serviceProvider);
+            return View();
+        }
+        */
 
         public IActionResult Detalles(int id)
         {
@@ -156,7 +167,9 @@ namespace WebNetCore3.Controllers
             }
 
             // id del usuario de la tabla AspNetUsers, para proporcinarle un rol
-            var user = await userManager.FindByIdAsync("6a5fc1bb-3aa1-4d0f-91c6-a23f057c8592");
+            //var user = await userManager.FindByIdAsync("6a5fc1bb-3aa1-4d0f-91c6-a23f057c8592");
+            var user = await userManager.FindByIdAsync("1185b098-8841-4ea0-b9ec-8a8ff9aad518");
+            // 1185b098-8841-4ea0-b9ec-8a8ff9aad518
             await userManager.AddToRoleAsync(user, "Admin");
         }
     }
